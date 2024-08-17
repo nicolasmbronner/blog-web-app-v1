@@ -1,0 +1,27 @@
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/theme.js"></script>
+
+<!-- Lancer des fonctions d'un fichier .js depuis un fichier .ejs demande d'utiliser
+     <script> de type "module", et d'importer les fonctions qui nous intéressent. C'est
+     ce que les pros font.
+-->
+
+<script type="module">
+    // Ajouter ici les autres types de pop-up, avec des if (GET) / if (POST) etc...
+    import { showBlogResetNotification, showBlogPreResetNotification } from '/scripts.js';
+
+    const socket = io();
+
+    socket.on( 'blogReset', ( ) => {
+        console.log( `Blog reset` );
+        showBlogResetNotification( );
+    } );
+
+    socket.on( 'blogPreReset', ( ) => {
+        showBlogPreResetNotification( );
+    } );
+</script>
+
+</body>
+</html>

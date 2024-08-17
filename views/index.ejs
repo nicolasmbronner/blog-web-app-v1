@@ -1,0 +1,37 @@
+<%- include( "partials/header.ejs" ) %>
+
+<a href="/new-article" class="btn">New Article</a>
+<button id="theme-toggle">Toggle Theme</button>
+
+<h1>Mindfulness Blog</h1>
+
+<% if ( locals.articlesIndex ) { %>
+    <ul>
+        <% [...articlesIndex].reverse().forEach( article => { %>
+            <li>
+                <%= article.date %>
+                <a href="/article/<%= article.id %>"> <%= article.title %> </a>
+                <a href=<%= "/edit-article/" + article.id %> class="btn"> Edit </a>
+                <form action="/delete/<%= article.id %>" method="POST" style="display:inline;">
+                    <button type="submit" class="btn delete-btn"> Delete</button>
+                </form>
+            </li>
+        <% } ) %>
+    </ul>
+<% } %>
+
+<%- include( "partials/footer.ejs" ) %>
+
+<script type="module">
+    import { showDeleteArticleConfirmation } from "/scripts.js";
+
+    document.addEventListener( "click", async ( e ) => {
+        if ( e.target.classList.contains( "delete-btn" ) ) {
+            e.preventDefault( );
+            const result = await showDeleteArticleConfirmation( );
+            if ( result.isConfirmed ) {
+                e.target.closest( "form" ).submit( );
+            }
+        }
+    } );
+</script>

@@ -1,0 +1,30 @@
+<%- include( "partials/header.ejs" ) %>
+
+<!-- Les liens <a> en HTML ne supportent que les requêtes GET -->
+
+<a href="/" class="btn">Back </a>
+<a href=<%= "/edit-article/" + article.id %> class="btn"> Edit </a>
+<form action="/delete/<%= article.id %>" method="POST" style="display:inline;">
+    <button type="submit" class="btn delete-btn"> Delete</button>
+</form>
+<button id="theme-toggle">Toggle Theme</button>
+
+<h1><%= article.title %></h1>
+<p><%= article.date %></p>
+<p><%- article.content %></p>
+
+<%- include( "partials/footer.ejs" ) %>
+
+<script type="module">
+    import { showDeleteArticleConfirmation } from '/scripts.js';
+
+    document.addEventListener( "click", async ( e ) => {
+        if ( e.target.classList.contains( "delete-btn" ) ) {
+            e.preventDefault( );
+            const result = await showDeleteArticleConfirmation( );
+            if ( result.isConfirmed ) {
+                e.target.closest( "form" ).submit( );
+            }
+        }
+    } );
+</script>

@@ -1,0 +1,70 @@
+<%- include( "partials/header.ejs" ) %>
+
+<button class="btn" id="cancelButton">Cancel </button>
+<button id="theme-toggle">Toggle Theme</button>
+
+<form action="<%= mode === 'create' ? '/new-article' : '/edit-article/' + article.id %>" method="POST">
+
+    <!-- Le paramètre "for" dans l'élément <label> est utilisé pour lier le label à un champ de formulaire spécifique. Il 
+        améliore l'accessibilité et l'expérience utilisateur.-->
+
+    <label for="title">Title ...</label>
+    
+    <!-- name: ce paramètre est crucial car il définit le nom de la variable qui sera envoyée au serveur lorsque le formulaire
+        sera soumis. Le serveur utilise ces noms pour récupérer les valeurs des champs du formulaire. Dans ton cas, les noms
+        doivent correspondre aux propriétés de tes objets d'articles ("title" et "content").-->
+
+    <!-- value: Ce paramètre est utilisé pour pré-remplir les champs du formulaire avec les valeurs existantes des articles
+        lorsque tu est en mode édition. Pour la création d'un nouvel article, ces valeurs seront vides ou par défaut.-->
+
+    <!-- Le paramètre id est optionnel et est principalement utilisé pour le style et l'accessibilité (par exemple, pour
+        lier les labels aux champs de formulaire). Il n'est pas nécessaire pour que le formulaire fonctionne, mais il peut
+        être utile pour le CSS et le JS.-->
+
+    <input type="text" id="title" name="title" value="<%= article.title %>" required>
+
+    <label for="content">Body ...</label>
+    <textarea id="content" name="content" required><%= article.content %></textarea>
+
+    <button type="submit">Save</button>
+</form>
+
+<%- include( "partials/footer.ejs" ) %>
+
+<script type="module">
+    import { showCancelCreationEditConfirmation } from "/scripts.js";
+
+    const mode = "<%= mode %>";
+    const titleField = document.getElementById( "title" );
+    const contentField = document.getElementById( "content" );
+
+    // Store initial values for edit mode
+    const initialTitle = titleField.value;
+    const initialContent = contentField.value;
+
+    document.getElementById( "cancelButton" ).addEventListener( "click", async ( e ) => {
+        if (mode === "create" ) {
+            // Creation mode
+            // Check if both fields are empty
+            if ( titleField.value.trim( ) === "" && contentField.value.trim( ) === "" ) {
+                // If both fields are empty, redirect without showing the popup
+                window.location.href = "/";
+            } else {
+                const result = await showCancelCreationEditConfirmation( );
+                if ( result.isConfirmed ) {
+                    window.location.href = "/";
+                }
+            }
+        } else {
+            // Edit mode
+            if ( titleField.value !== initialTitle || contentField.value !== initialContent ) {
+                const result = await showCancelCreationEditConfirmation( );
+                if ( result.isConfirmed ) {
+                    window.location.href = "/";
+                }
+            } else {
+                window.location.href = "/";
+            }
+        }
+    } );
+</script>
