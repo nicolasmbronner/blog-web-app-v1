@@ -1,6 +1,17 @@
-// Dans votre fichier scripts.js
+function getCurrentTheme( ) {
+    return document.body.classList.contains( "dark-theme" ) ? "dark" : "light";
+}
 
-export function showBlogResetNotification() {
+function getThemeColors( theme)  {
+    return theme === "dark"
+        ? { background: "var( --swal-background-dark )", color: "var( --swal-text-dark )" }
+        : { background: 'var(--swal-background-light)', color: 'var(--swal-text-light)' };
+}
+
+export function showBlogResetNotification( ) {
+    const theme = getCurrentTheme( );
+    const colors = getThemeColors( theme );
+
     Swal.fire({
         position: "top-end",
         showConfirmButton: false,
@@ -9,11 +20,17 @@ export function showBlogResetNotification() {
         toast: true,
         timerProgressBar: true,
         showCloseButton: true,
-        icon: "info"
-    });
+        icon: "info",
+
+        background: colors.background,
+        color: colors.color
+    } );
 }
 
 export function showBlogPreResetNotification() {
+    const theme = getCurrentTheme( );
+    const colors = getThemeColors( theme );
+
     Swal.fire({
         position: "top-end",
         showConfirmButton: false,
@@ -22,26 +39,56 @@ export function showBlogPreResetNotification() {
         toast: true,
         timerProgressBar: true,
         showCloseButton: true,
-        icon: "info"
-    });
+        icon: "info",
+
+        background: colors.background,
+        color: colors.color
+    } );
 }
 
 export function showCancelCreationEditConfirmation() {
+    const theme = getCurrentTheme( );
+    const colors = getThemeColors( theme );
+
     return Swal.fire({
-        title: 'You will lose your changes!',
+
+        title: 'Trash Changes?',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Confirm',
-        cancelButtonText: 'Cancel'
-    });
+        cancelButtonText: 'Cancel',
+        width: 300,
+
+        background: colors.background,
+        color: colors.color,
+        customClass: {
+            popup: "custom-popup",
+            confirmButton: "custom-cancel-edit-button",
+            cancelButton: "custom-cancel-button",
+            actions: "custom-actions"
+        }
+    } );
 }
 
 export function showDeleteArticleConfirmation() {
+    const theme = getCurrentTheme();
+    const colors = getThemeColors(theme);
+    
     return Swal.fire({
         title: 'Delete Article?',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Yes',
-        cancelButtonText: 'Cancel'
-    });
+        cancelButtonText: 'Cancel',
+        width: 300,
+
+        background: colors.background,
+        color: colors.color,
+        customClass: {
+            popup: "custom-popup",
+            confirmButton: "custom-delete-article-button",
+            cancelButton: "custom-cancel-button",
+            actions: "custom-actions"
+        }
+    } );
 }
