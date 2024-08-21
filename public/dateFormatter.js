@@ -19,4 +19,4 @@ const dateFormatter = {
     }
 };
 
-module.exports = dateFormatter; // WIKI documenter ça
+export default dateFormatter; // WIKI documenter ça

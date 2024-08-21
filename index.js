@@ -10,6 +10,9 @@ import bodyParser from "body-parser";
 import { Server } from "socket.io";
 import http from "http";
 
+// Date Formatter
+import dateFormatter from './public/dateFormatter.js';
+
 // GLOBAL
 const app = express( );
 const port = 3000;
