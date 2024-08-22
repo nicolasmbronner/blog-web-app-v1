@@ -22,6 +22,32 @@ body.dark-theme {
 
 
 
+/* DATES RESPONSIVE DISPLAY */
+.date-year-month {
+    display: none;
+}
+
+.date-full {
+
+}
+
+.date-year {
+    display: inline;
+}
+
+/* Media queries for tablet and desktop */
+@media screen and ( min-width: 768px ) {
+    .date-year {
+        display: none;
+    }
+
+    .date-year-month {
+        display: inline;
+    }
+} 
+
+
+
 /*  SWEET ALERTS 2 */
 
 .custom-actions {

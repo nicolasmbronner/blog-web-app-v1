@@ -9,7 +9,8 @@
     <ul>
         <% [...articlesIndex].reverse().forEach( article => { %>
             <li>
-                <%= article.date %>
+                <span class="date date-year"><%= article.yearOnly %></span>
+                <span class="date date-year-month"><%= article.yearMonth %></span>
                 <a href="/article/<%= article.id %>"> <%= article.title %> </a>
                 <a href=<%= "/edit-article/" + article.id %> class="btn"> Edit </a>
                 <form action="/delete/<%= article.id %>" method="POST" style="display:inline;">

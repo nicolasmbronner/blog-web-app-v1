@@ -48,13 +48,29 @@ let articles = [ ];
 app.use( express.static( "public" ) );
 app.use( bodyParser.urlencoded( { extended: true } ) );
 
+// console.log( "Test de dateFormatter.formatYearMonth:", dateFormatter.formatYearMonth( "2023-08-21" ) );
+
+function getFormattedArticles( ) {
+    return articles.map( article => ( {
+        ...article,
+        yearOnly: dateFormatter.formatYear( article.date ),
+        yearMonth: dateFormatter.formatYearMonth( article.date ),
+        fullDate: dateFormatter.formatFull( article.date )
+    } ) );
+}
+
+
+
 // INDEX PAGE
 app.get( "/", (req, res ) => {
-    res.render( "index.ejs", { articlesIndex: articles } );
+    const formattedArticles = getFormattedArticles();
+    res.render( "index.ejs", { articlesIndex: formattedArticles } );
 } );
 
 preResetBlog();
 resetBlog();
+
+
 
 // GO TO READING ARTICLE
 app.get( "/article/:id", ( req, res ) => { // `:`= paramètre de route
@@ -62,14 +78,22 @@ app.get( "/article/:id", ( req, res ) => { // `:`= paramètre de route
     const articleId = parseInt( req.params.id ); // Accès au paramètre de route "id"
     const article = articles.find( a => a.id === articleId ); // Recherche de l'article
     if ( article ) {
-        res.render( "article.ejs", { article: article } );
+        const formattedArticle = {
+            ...article,
+            fullDate: dateFormatter.formatFull( article.date )
+        };
+        res.render( "article.ejs", { article: formattedArticle } );
     } // TODO : créer une exception, si l'article est effacé et qu'on actualise la page, renvoi 404.
 } );
+
+
 
 // GO TO NEW ARTICLE
 app.get( "/new-article", ( req, res ) => {
     res.render( "article-form.ejs", { article: { }, mode: "create" } );
 } );
+
+
 
 // POST NEW ARTICLE
 app.post( "/new-article", ( req, res ) => {
@@ -83,6 +107,8 @@ app.post( "/new-article", ( req, res ) => {
     res.render( "article.ejs", { article: newArticle } );
 } );
 
+
+
 // GO TO EDIT ARTICLE
 app.get( "/edit-article/:id", ( req, res ) => {
     // TODO : créer une fonction externe pour trouver l'article à envoyer ds res.render
@@ -92,6 +118,8 @@ app.get( "/edit-article/:id", ( req, res ) => {
         res.render( "article-form.ejs", { article: article, mode: "edit" } );
     }
 } );
+
+
 
 // POST EDIT ARTICLE
 app.post( "/edit-article/:id", ( req, res ) => {
@@ -105,6 +133,8 @@ app.post( "/edit-article/:id", ( req, res ) => {
     }
     
 } );
+
+
 
 // DELETE ARTICLE
 // pour supprimer, malgré qu'il existe la route DELETE, il est infiniment plus simple d'utiliser POST
@@ -121,6 +151,8 @@ app.post( "/delete/:id", ( req, res ) => {
     }
 } ); 
 
+
+
 // START EXPRESS & SOCKET.IO SERVER
 server.listen( port, ( ) => {
     console.log( `Listening on port ${ port } with Express and Socket.IO`);
@@ -135,6 +167,8 @@ function getToday ( ) {
         ( "0" + today.getDate( ) ).slice( -2 );
     return formattedDate;
 }
+
+
 
 // RESET BLOG
 function preResetBlog( ) {
