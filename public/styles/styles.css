@@ -20,6 +20,95 @@ body.dark-theme {
     color: var(--text-color-dark);
 }
 
+/* ul {
+    list-style: none;
+} */
+
+.buttons-cont {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.left-butt-group {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.right-butt-group {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.article-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.article-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.article-info {
+    display: flex;
+    align-items: center;
+}
+
+.inline-buttons-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-left: 10px;
+}
+
+.btn {
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: inherit;
+    text-decoration: none;
+}
+
+.btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+.small-btn {
+    height: 14px;
+    width: 14px;
+}
+
+.small-btn svg {
+    height: 14px;
+    width: 14px;
+}
+
+.btn:hover {
+    background-color: rgba( 0, 0, 0, 0.1 );
+}
+
+.btn span {
+    display: none;
+}
+
+
+body.dark-theme .btn {
+    color: #fff;
+    border-color: #444;
+}
+
+body.dark-theme .btn:hover {
+    background-color: #3a3a3a;
+}
+
 
 
 /* DATES RESPONSIVE DISPLAY */

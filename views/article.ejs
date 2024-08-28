@@ -2,12 +2,34 @@
 
 <!-- Les liens <a> en HTML ne supportent que les requêtes GET -->
 
-<a href="/" class="btn">Back </a>
-<a href=<%= "/edit-article/" + article.id %> class="btn"> Edit </a>
-<form action="/delete/<%= article.id %>" method="POST" style="display:inline;">
-    <button type="submit" class="btn delete-btn"> Delete</button>
-</form>
-<button id="theme-toggle">Toggle Theme</button>
+<div class="buttons-cont">
+    
+    <div class="left-butt-group">
+        <a href="/" class="btn">
+            <i data-lucide="chevron-left"></i>
+            <span>Back</span>
+        </a>
+    </div>
+
+    <div class="right-butt-group">
+        <a href=<%= "/edit-article/" + article.id %> class="btn">
+            <i data-lucide="pencil"></i>
+            <span>Edit Article</span>
+        </a>
+    
+        <form action="/delete/<%= article.id %>" method="POST"">
+            <button type="submit" class="btn delete-btn">
+                <i data-lucide="trash"></i>
+                <span>Delete Article</span>
+            </button>
+        </form>
+    
+        <button id="theme-toggle" class="btn">
+            <i data-lucide="contrast"></i>
+            <span>Toogle Theme</span>
+        </button>
+    </div>
+</div>
 
 <h1><%= article.title %></h1>
 <p class=""date-full"><%= article.fullDate %></p>
@@ -16,14 +38,15 @@
 <%- include( "partials/footer.ejs" ) %>
 
 <script type="module">
-    import { showDeleteArticleConfirmation } from '/scripts.js';
+    import { showDeleteArticleConfirmation } from "/scripts.js";
 
     document.addEventListener( "click", async ( e ) => {
-        if ( e.target.classList.contains( "delete-btn" ) ) {
+        const deleteBtn = e.target.closest( '.delete-btn' );
+        if ( deleteBtn ) {
             e.preventDefault( );
             const result = await showDeleteArticleConfirmation( );
             if ( result.isConfirmed ) {
-                e.target.closest( "form" ).submit( );
+                deleteBtn.closest( "form" ).submit( );
             }
         }
     } );

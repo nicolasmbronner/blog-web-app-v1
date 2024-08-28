@@ -1,21 +1,42 @@
 <%- include( "partials/header.ejs" ) %>
 
-<a href="/new-article" class="btn">New Article</a>
-<button id="theme-toggle">Toggle Theme</button>
+<div class="right-butt-group">
+    <a href="/new-article" class="btn">
+        <i data-lucide="square-plus"></i>
+        <span>New Article</span>
+    </a>
+
+    <button id="theme-toggle" class="btn">
+        <i data-lucide="contrast"></i>
+        <span>Toogle Theme</span>
+    </button>
+</div>
 
 <h1>Mindfulness Blog</h1>
 
 <% if ( locals.articlesIndex ) { %>
-    <ul>
+    <ul class="article-list">
         <% [...articlesIndex].reverse().forEach( article => { %>
-            <li>
-                <span class="date date-year"><%= article.yearOnly %></span>
-                <span class="date date-year-month"><%= article.yearMonth %></span>
-                <a href="/article/<%= article.id %>"> <%= article.title %> </a>
-                <a href=<%= "/edit-article/" + article.id %> class="btn"> Edit </a>
-                <form action="/delete/<%= article.id %>" method="POST" style="display:inline;">
-                    <button type="submit" class="btn delete-btn"> Delete</button>
-                </form>
+            <li class="article-item">
+                <div class="article-info">
+                    <span class="date date-year"><%= article.yearOnly %></span>
+                    <span class="date date-year-month"><%= article.yearMonth %></span>
+                    <a href="/article/<%= article.id %>"> <%= article.title %> </a>
+                </div>
+
+                <div class="inline-buttons-container">
+                    <a href=<%= "/edit-article/" + article.id %> class="btn small-btn">
+                        <i data-lucide="pencil"></i>
+                        <span>Edit Article</span>
+                    </a>
+
+                    <form action="/delete/<%= article.id %>" method="POST">
+                        <button type="submit" class="btn small-btn delete-btn">
+                            <i data-lucide="trash"></i>
+                            <span>Delete Article</span>
+                        </button>
+                    </form>
+                </div>
             </li>
         <% } ) %>
     </ul>
@@ -27,11 +48,12 @@
     import { showDeleteArticleConfirmation } from "/scripts.js";
 
     document.addEventListener( "click", async ( e ) => {
-        if ( e.target.classList.contains( "delete-btn" ) ) {
+        const deleteBtn = e.target.closest( '.delete-btn' );
+        if ( deleteBtn ) {
             e.preventDefault( );
             const result = await showDeleteArticleConfirmation( );
             if ( result.isConfirmed ) {
-                e.target.closest( "form" ).submit( );
+                deleteBtn.closest( "form" ).submit( );
             }
         }
     } );

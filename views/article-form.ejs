@@ -1,9 +1,34 @@
 <%- include( "partials/header.ejs" ) %>
 
-<button class="btn" id="cancelButton">Cancel </button>
-<button id="theme-toggle">Toggle Theme</button>
+<div class="buttons-cont">
 
-<form action="<%= mode === 'create' ? '/new-article' : '/edit-article/' + article.id %>" method="POST">
+    <div class="left-butt-group">
+
+        <button class="btn" id="cancelButton">
+            <i data-lucide="chevron-left"></i>
+            <span>Cancel</span>
+        </button>
+    </div>
+
+    <div class="right-butt-group">
+
+        <!-- form="articleForm" permet de lier ce bouton au formulaire d'ID "articleForm" -->
+        <button type="submit" form="articleForm" class="btn">
+            <i data-lucide="save"></i>
+            <span>Save</span>
+        </button>
+
+        <button id="theme-toggle" class="btn">
+            <i data-lucide="contrast"></i>
+            <span>Togle Theme</span>
+        </button>
+    </div>
+    
+
+    
+</div>
+
+<form id="articleForm" action="<%= mode === 'create' ? '/new-article' : '/edit-article/' + article.id %>" method="POST">
 
     <!-- Le paramètre "for" dans l'élément <label> est utilisé pour lier le label à un champ de formulaire spécifique. Il 
         améliore l'accessibilité et l'expérience utilisateur.-->
@@ -25,8 +50,6 @@
 
     <label for="content">Body ...</label>
     <textarea id="content" name="content" required><%= article.content %></textarea>
-
-    <button type="submit">Save</button>
 </form>
 
 <%- include( "partials/footer.ejs" ) %>

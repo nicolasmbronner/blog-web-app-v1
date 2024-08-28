@@ -19,7 +19,7 @@ const port = 3000;
 
 // Socket.IO
 const server = http.createServer( app );
-const io = new Server( server );
+const io = new Server( server )
 
 // TODO : afficher les dates correctement (ne pas les écrire, laisser le code faire le travail)
 const staticArticles = [
@@ -27,7 +27,7 @@ const staticArticles = [
         id: 1,
         title: "Bodhichitta",
         date: "2023-03-23",
-        content: "Need to check on human, have not seen in an hour might be dead oh look, human is alive, hiss at human, feed me. Warm up laptop with butt lick butt fart rainbows until owner yells pee in litter box hiss at cats poop on the floor, break a planter, sprint, eat own hair, vomit hair, hiss, chirp at birds, eat a squirrel, hide from fireworks, lick toe beans, attack christmas tree but show belly."
+        content: "Need to check on human, ave not seen in an hour might be dead oh look, human is alive, hiss at human, feed me. Warm up laptop with butt lick butt fart rainbows until owner yells pee in litter box hiss at cats poop on the floor, break a planter, sprint, eat own hair, vomit hair, hiss, chirp at birds, eat a squirrel, hide from fireworks, lick toe beans, attack christmas tree but show belly."
     },
     {
         id: 2,
@@ -49,6 +49,8 @@ app.use( express.static( "public" ) );
 app.use( bodyParser.urlencoded( { extended: true } ) );
 
 // console.log( "Test de dateFormatter.formatYearMonth:", dateFormatter.formatYearMonth( "2023-08-21" ) );
+
+
 
 function getFormattedArticles( ) {
     return articles.map( article => ( {
@@ -180,10 +182,6 @@ function preResetBlog( ) {
             preResetBlog( );
         }, 10000 );
     }, 50000 );
-
-    // articles = staticArticles.map( article => ( { ...article } ) ); // attention à la copie superficielle > copie profonde des objets.
-    // console.log(`Blog reset`);
-    // io.emit( 'blogReset' ); // émettre un événement 'blogReset' à tous les clients connectés
 }
 
 function resetBlog( ) {
