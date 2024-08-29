@@ -1,6 +1,7 @@
 <%- include( "partials/header.ejs" ) %>
 
-<div class="right-butt-group">
+<div class="top-btns right-butt-group">
+
     <a href="/new-article" class="btn">
         <i data-lucide="square-plus"></i>
         <span>New Article</span>
@@ -19,8 +20,10 @@
         <% [...articlesIndex].reverse().forEach( article => { %>
             <li class="article-item">
                 <div class="article-info">
-                    <span class="date date-year"><%= article.yearOnly %></span>
-                    <span class="date date-year-month"><%= article.yearMonth %></span>
+                    <div class="date-cont">
+                        <span class="date date-year"><%= article.yearOnly %></span>
+                        <span class="date date-year-month"><%= article.yearMonth %></span>
+                    </div>
                     <a href="/article/<%= article.id %>"> <%= article.title %> </a>
                 </div>
 
