@@ -2,6 +2,8 @@
     --background-color-light: white;
     --text-color-light: #141518;
     --background-color-dark: #141518;
+    --color-dimmed: #515151;
+    --color-dimmed-dark: #AFAFAF;
     --text-color-dark: white;
 
     --swal-background-light: white;
@@ -34,9 +36,9 @@ a:hover {
     text-decoration: underline;
 }
 
-/* ul {
-    list-style: none;
-} */
+.container {
+    margin: 10px;
+}
 
 .buttons-cont {
     display: flex;
@@ -76,12 +78,18 @@ body.dark-theme .article-item:hover {
 }
 
 .date-cont {
-    width: 150px;
+    color: var(--color-dimmed);
+    width: 60px;
     display: inline-flex;
+    font-size: .9rem;
 }
 
-.article-title {
-    padding-left: 30px;
+body.dark-theme .date-cont {
+    color: var(--color-dimmed-dark);
+}
+
+.article-id {
+    overflow: hidden;
 }
 
 .inline-buttons-container {
@@ -168,6 +176,10 @@ body.dark-theme .btn:hover {
 
     .date-year-month {
         display: inline;
+    }
+
+    .date-cont {
+        width: 120px;
     }
 } 
 
