@@ -13,9 +13,10 @@ export function showBlogResetNotification( ) {
     const colors = getThemeColors( theme );
 
     Swal.fire({
-        position: "top-end",
+        target: document.getElementById('toast-container'),
+        position: "bottom-end",
         showConfirmButton: false,
-        text: "Blog reset, next reset in 1 hour.",
+        text: "Blog reset.",
         timer: 6000,
         toast: true,
         timerProgressBar: true,
@@ -23,7 +24,10 @@ export function showBlogResetNotification( ) {
         icon: "info",
 
         background: colors.background,
-        color: colors.color
+        color: colors.color,
+        customClass: {
+            'container': 'trial-swal-container'
+        }
     } );
 }
 
@@ -32,9 +36,10 @@ export function showBlogPreResetNotification() {
     const colors = getThemeColors( theme );
 
     Swal.fire({
-        position: "top-end",
+        target: document.getElementById('toast-container'),
+        position: "bottom-end",
         showConfirmButton: false,
-        text: "Blog reset in 5 minutes.",
+        text: "Blog reset soon.",
         timer: 4000,
         toast: true,
         timerProgressBar: true,
@@ -42,7 +47,10 @@ export function showBlogPreResetNotification() {
         icon: "info",
 
         background: colors.background,
-        color: colors.color
+        color: colors.color,
+        customClass: {
+            'container': 'trial-swal-container'
+        }
     } );
 }
 

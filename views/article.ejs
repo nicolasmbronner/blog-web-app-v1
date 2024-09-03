@@ -2,7 +2,8 @@
 
 <!-- Les liens <a> en HTML ne supportent que les requêtes GET -->
 
-<div class="buttons-cont">
+<div class="container">
+    <div class="buttons-cont">
     
     <div class="top-btns left-butt-group">
 
@@ -36,6 +37,9 @@
 <h1><%= article.title %></h1>
 <p class=""date-full"><%= article.fullDate %></p>
 <p><%- article.content %></p>
+</div>
+
+
 
 <%- include( "partials/footer.ejs" ) %>
 

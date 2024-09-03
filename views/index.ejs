@@ -1,50 +1,53 @@
 <%- include( "partials/header.ejs" ) %>
 
-<div class="container">
-    <div class="top-btns right-butt-group">
+<div class="container" id="cont">
+    <div id="toast-container"></div>
+    <div class="blog-container">
+        <div class="top-btns right-butt-group">
 
-        <a href="/new-article" class="btn">
-            <i data-lucide="square-plus"></i>
-            <span>New Article</span>
-        </a>
+            <a href="/new-article" class="btn">
+                <i data-lucide="square-plus"></i>
+                <span>New Article</span>
+            </a>
 
-        <button id="theme-toggle" class="btn">
-            <i data-lucide="contrast"></i>
-            <span>Toogle Theme</span>
-        </button>
-    </div>
+            <button id="theme-toggle" class="btn">
+                <i data-lucide="contrast"></i>
+                <span>Toogle Theme</span>
+            </button>
+        </div>
 
-    <h1>Mindfulness Blog</h1>
+        <h1>Mindfulness Blog</h1>
 
-    <% if ( locals.articlesIndex ) { %>
-        <ul class="article-list">
-            <% [...articlesIndex].reverse().forEach( article => { %>
-                <li class="article-item">
-                    <div>
-                        <div class="date-cont">
-                            <span class="date date-year"><%= article.yearOnly %></span>
-                            <span class="date date-year-month"><%= article.yearMonth %></span>
+        <% if ( locals.articlesIndex ) { %>
+            <ul class="article-list">
+                <% [...articlesIndex].reverse().forEach( article => { %>
+                    <li class="article-item">
+                        <div class="article-content">
+                            <div class="date-cont">
+                                <span class="date date-year"><%= article.yearOnly %></span>
+                                <span class="date date-year-month"><%= article.yearMonth %></span>
+                            </div>
+                            <a class="article-id" href="/article/<%= article.id %>"> <%= article.title %> </a>
                         </div>
-                        <a class="article-id" href="/article/<%= article.id %>"> <%= article.title %> </a>
-                    </div>
 
-                    <div class="inline-buttons-container">
-                        <a href=<%= "/edit-article/" + article.id %> class="btn small-btn">
-                            <i data-lucide="pencil"></i>
-                            <span>Edit Article</span>
-                        </a>
+                        <div class="inline-buttons-container">
+                            <a href=<%= "/edit-article/" + article.id %> class="btn small-btn">
+                                <i data-lucide="pencil"></i>
+                                <span>Edit Article</span>
+                            </a>
 
-                        <form action="/delete/<%= article.id %>" method="POST">
-                            <button type="submit" class="btn small-btn delete-btn">
-                                <i data-lucide="trash"></i>
-                                <span>Delete Article</span>
-                            </button>
-                        </form>
-                    </div>
-                </li>
-            <% } ) %>
-        </ul>
-    <% } %>
+                            <form action="/delete/<%= article.id %>" method="POST">
+                                <button type="submit" class="btn small-btn delete-btn">
+                                    <i data-lucide="trash"></i>
+                                    <span>Delete Article</span>
+                                </button>
+                            </form>
+                        </div>
+                    </li>
+                <% } ) %>
+            </ul>
+        <% } %>
+    </div>
 </div>
 
 
