@@ -2,41 +2,44 @@
 
 <!-- Les liens <a> en HTML ne supportent que les requêtes GET -->
 
-<div class="container">
-    <div class="buttons-cont">
+<div class="container" id="cont">
+    <div id="toast-container"></div>
+    <div class="blog-container">
+        <div class="buttons-cont">
     
-    <div class="top-btns left-butt-group">
+            <div class="top-btns left-butt-group">
 
-        <a href="/" class="btn">
-            <i data-lucide="chevron-left"></i>
-            <span>Back</span>
-        </a>
+                <a href="/" class="btn">
+                    <i data-lucide="chevron-left"></i>
+                    <span>Back</span>
+                </a>
+            </div>
+
+            <div class="top-btns right-butt-group">
+            
+                <a href=<%= "/edit-article/" + article.id %> class="btn">
+                    <i data-lucide="pencil"></i>
+                    <span>Edit Article</span>
+                </a>
+            
+                <form action="/delete/<%= article.id %>" method="POST"">
+                    <button type="submit" class="btn delete-btn">
+                        <i data-lucide="trash"></i>
+                        <span>Delete Article</span>
+                    </button>
+                </form>
+            
+                <button id="theme-toggle" class="btn">
+                    <i data-lucide="contrast"></i>
+                    <span>Toogle Theme</span>
+                </button>
+            </div>
+        </div>
+
+        <h1><%= article.title %></h1>
+        <p class="date-full article-date"><%= article.fullDate %></p>
+        <p class="article-body"><%- article.content %></p>
     </div>
-
-    <div class="top-btns right-butt-group">
-        
-        <a href=<%= "/edit-article/" + article.id %> class="btn">
-            <i data-lucide="pencil"></i>
-            <span>Edit Article</span>
-        </a>
-    
-        <form action="/delete/<%= article.id %>" method="POST"">
-            <button type="submit" class="btn delete-btn">
-                <i data-lucide="trash"></i>
-                <span>Delete Article</span>
-            </button>
-        </form>
-    
-        <button id="theme-toggle" class="btn">
-            <i data-lucide="contrast"></i>
-            <span>Toogle Theme</span>
-        </button>
-    </div>
-</div>
-
-<h1><%= article.title %></h1>
-<p class=""date-full"><%= article.fullDate %></p>
-<p><%- article.content %></p>
 </div>
 
 

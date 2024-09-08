@@ -19,6 +19,8 @@ body {
     font-size: 18px;
     letter-spacing: .2rem;
     font-weight: 300;
+    margin: 0;
+    height: 95svh;
 }
 
 body.dark-theme {
@@ -36,8 +38,25 @@ a:hover {
     text-decoration: underline;
 }
 
+h1 {
+    font-weight: 400;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.article-body {
+    font-family: "Noto Serif", serif;
+    line-height: 1.75rem;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+body.dark-theme .article-body {
+    font-weight: 300;
+}
+
 #toast-container {
-    margin-bottom: 20px;
+    bottom: 20px;
     position: fixed;
     display: flex;
     align-self: flex-end;
@@ -53,10 +72,9 @@ a:hover {
 }
 
 .container {
-    margin: 0;
-    height: 100svh;
     display: flex;
     justify-content: center;
+    margin-top: 10px;
 }
 
 .buttons-cont {
@@ -87,6 +105,8 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-bottom: 0.35rem;
+    padding-top: 0.35rem;
 }
 
 .article-content {
@@ -116,11 +136,25 @@ body.dark-theme .date-cont {
     color: var(--color-dimmed-dark);
 }
 
+.article-date {
+    padding-bottom: 1rem;
+    color: var(--color-dimmed);
+}
+
+body.dark-theme .article-date {
+    color: var(--color-dimmed-dark);
+}
+
 .article-id {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     margin-right: 10px;
+    font-weight: 400;
+}
+
+body.dark-theme .article-id {
+    font-weight: 300;
 }
 
 .inline-buttons-container {
@@ -203,7 +237,8 @@ body.dark-theme .btn:hover {
 @media screen and ( min-width: 768px ) {
     .blog-container {
         width: 650px;
-        margin: auto;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     #toast-container {
