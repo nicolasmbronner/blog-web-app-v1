@@ -1,4 +1,5 @@
 function setTheme( theme ) {
+    document.documentElement.classList.toggle( 'dark-theme', theme === 'dark' ); // MODIF ADDED
     document.body.classList.toggle( 'dark-theme', theme === 'dark' ); // add / remove `dark-theme` class from the body
     localStorage.setItem( 'theme', theme ); // save chosen theme in local storage
 }

@@ -6,6 +6,15 @@
 
     <link rel="stylesheet" href="/styles/styles.css">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        (function( ) {
+            var savedTheme = localStorage.getItem( 'theme' );
+            if ( savedTheme === 'dark' ) {
+                document.documentElement.classList.add( 'dark-theme' );
+                document.body.classList.add( 'dark-theme' );
+            }
+        } ) ( );
+    </script>
 
     <!-- Roboto Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

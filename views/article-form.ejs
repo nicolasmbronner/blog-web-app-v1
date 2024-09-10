@@ -1,28 +1,31 @@
 <%- include( "partials/header.ejs" ) %>
 
-<div class="container">
-    <div class="buttons-cont">
+<div class="container" id="cont">
+    <div id="toast-container"></div>
+    <div class="buttons-cont-wrapper">
+        <div class="buttons-cont">
 
-        <div class="top-btns left-butt-group">
-
-            <button class="btn" id="cancelButton">
-                <i data-lucide="chevron-left"></i>
-                <span>Cancel</span>
-            </button>
-        </div>
-
-        <div class="top-btns right-butt-group">
-
-            <!-- form="articleForm" permet de lier ce bouton au formulaire d'ID "articleForm" -->
-            <button type="submit" form="articleForm" class="btn">
-                <i data-lucide="save"></i>
-                <span>Save</span>
-            </button>
-
-            <button id="theme-toggle" class="btn">
-                <i data-lucide="contrast"></i>
-                <span>Togle Theme</span>
-            </button>
+            <div class="top-btns left-butt-group">
+    
+                <button class="btn" id="cancelButton">
+                    <i data-lucide="chevron-left"></i>
+                    <span>Cancel</span>
+                </button>
+            </div>
+    
+            <div class="top-btns right-butt-group">
+    
+                <!-- form="articleForm" permet de lier ce bouton au formulaire d'ID "articleForm" -->
+                <button type="submit" form="articleForm" class="btn">
+                    <i data-lucide="save"></i>
+                    <span>Save</span>
+                </button>
+    
+                <button id="theme-toggle" class="btn">
+                    <i data-lucide="contrast"></i>
+                    <span>Togle Theme</span>
+                </button>
+            </div>
         </div>
     </div>
 
@@ -31,7 +34,7 @@
         <!-- Le paramètre "for" dans l'élément <label> est utilisé pour lier le label à un champ de formulaire spécifique. Il 
             améliore l'accessibilité et l'expérience utilisateur.-->
 
-        <label for="title">Title ...</label>
+        <!-- <label for="title">Title ...</label> -->
         
         <!-- name: ce paramètre est crucial car il définit le nom de la variable qui sera envoyée au serveur lorsque le formulaire
             sera soumis. Le serveur utilise ces noms pour récupérer les valeurs des champs du formulaire. Dans ton cas, les noms
@@ -44,9 +47,9 @@
             lier les labels aux champs de formulaire). Il n'est pas nécessaire pour que le formulaire fonctionne, mais il peut
             être utile pour le CSS et le JS.-->
 
-        <input type="text" id="title" name="title" value="<%= article.title %>" required>
+        <input type="text" id="title" name="title" value=<h1>"<%= article.title %>"</h1> required>
 
-        <label for="content">Body ...</label>
+        <!-- <label for="content">Body ...</label> -->
         <textarea id="content" name="content" required><%= article.content %></textarea>
     </form>
 </div>
