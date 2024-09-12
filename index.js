@@ -184,7 +184,8 @@ app.post( "/new-article", ( req, res ) => {
         content: req.body.content.replace(/\n/g, "<br>")
     };
     articles.push( newArticle );
-    res.render( "article.ejs", { article: newArticle } );
+    
+    res.redirect( `/article/${ newArticle.id }` );
 } );
 
 
@@ -208,10 +209,12 @@ app.post( "/edit-article/:id", ( req, res ) => {
     const article = articles.find( a => a.id === articleId ); // Recherche de l'article
     if ( article ) {
         article.title = req.body.title;
-        article.content = req.body.content.replace(/\n/g, "<br>")
-        res.render( "article.ejs", { article: article } );
+        article.content = req.body.content.replace( /\n/g, "<br>" );
+
+        res.redirect( `/article/${ article.id }` );
+    } else {
+        res.status( 404 ).send( { message: "Article not found" } );
     }
-    
 } );
 
 
